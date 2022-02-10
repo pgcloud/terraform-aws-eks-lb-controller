@@ -32,6 +32,11 @@ resource "helm_release" "lb_controller" {
     value = aws_iam_role.lb_controller[0].arn
   }
 
+  set {
+    name = "image.repository"
+    value = var.image_repository
+  }
+
   values = [
     yamlencode(var.settings)
   ]
